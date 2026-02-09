@@ -1,0 +1,70 @@
+name: ci pipeline
+
+on: ["push","pull_request"]
+
+
+jobs:
+  lint:
+    runs-on: ubuntu-20.04
+    steps: 
+      - name: Checkoutcode 
+        uses: actions/checkout@v3
+      - name:  Setup Node
+        uses: actions/setup-node@v4
+        with: 
+          node-version: 24
+          cache: "npm"
+
+      - name: print lint
+        run: echo "lint started"
+
+      - name: run lint check
+        run: npm run lint
+        
+      - name: npm lint check
+        run: echo "lint end"
+
+  test:
+      runs-on: ubuntu-20.04
+      needs: lint 
+      steps:
+        - name: Checkoutcode
+          uses: actions/checkout@v4
+        - name: Setup Node
+          uses: actions/setup-node@v4
+          with:
+            node-version: 24
+            cache: "npm"
+            
+        - name: print test
+          run: echo "test started"
+
+        - name: run test check
+          run: npm test
+          
+        - name: npm lint check
+          run: echo "test end
+
+  build:
+    runs-on: ubuntu-20.04
+    needs: [lint,test] 
+    steps:
+      - name: Checkoutcode
+        uses: actions/checkout@v4
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: "npm"
+          
+      - name: print build
+        run: echo "build started"
+
+      - name: run build check
+        run: npm run build
+        
+      - name: npm build check
+        run: echo "build end"
+
+
+
