@@ -1,6 +1,12 @@
 name: ci pipeline
 
-on: ["push", "pull_request"]
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
 
 jobs:
   test-job: 
@@ -17,5 +23,3 @@ jobs:
         run: npm install
       - name: Run Jest tests
         run: npm test
-        
-
