@@ -44,7 +44,7 @@ check for the value of the coupon is FLAT50 if yes so it will be converted into 
 
 ## CI Pipeline (if implemented)
 - Did CI pass successfully? (Yes / No)
-- GitHub Actions Run URL:
+- GitHub Actions Run URL: https://github.com/Shriti507/jest-workshop/actions
 
 ---
 
